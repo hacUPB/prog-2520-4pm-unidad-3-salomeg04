@@ -17,25 +17,21 @@ imc = peso / estatura ** 2
 #mostrar imc
 print ("su imc - ", imc)
 
-#si imc < 18.48 condicion de peso bajo 
-if imc < 18.49:
-    mensaje = "condicion: peso bajo"
-else: 
-    if 18.5 < imc < 24.99:
-        mensaje = "condicion peso normal"
+if imc < 18.5:
+    mensaje= "bajo peso"
+elif imc < 25:
+    mensaje= "peso normal"
+elif imc < 30:
+    mensaje= "sobrepeso"
+elif imc < 35:
+    mensaje= "obesidad tipo 1"
+elif imc < 40:
+    mensaje= "obesidad tipo 2"
+else:
+    mensaje= "obesidad extrema"
 
-#si imc es > 25 condicion sobrepeso
-if 25 < imc < 29.9:
-    mensaje = "condicion: sobrepeso"
-else: 
-   if 30 < imc < 39.9:
-    mensaje = "condicion: obesidad"
+print(f"{nombre}, su IMC es {imc:0.2f} y su condicion es {mensaje}")  
 
-#si imc es > 40 condicion obesidad extrema
-if imc > 40:
-    mensaje = "condicion: obesidad extrema"
-
-print (mensaje)
 
 
         
