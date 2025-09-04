@@ -14,9 +14,10 @@ for i in range(numero + 1):
 
 print(f"la suma de los pares hasta {numero} es {acumulador}")
 ''' 
-
+'''
 numero = int(input("ingrese el numero entero positivo: "))
 for i in range (1, numero + 1):
     for j in range(1, i + 1):
       print(j,end=' ')
     print ()
+'''
