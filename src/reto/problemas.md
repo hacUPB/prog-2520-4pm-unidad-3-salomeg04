@@ -67,6 +67,42 @@ si el angulo actual supera el angulo limte, la aeronave entra en perdida.
 
 ## Pseudocodigo:
 
+```  
+import random
+
+# Variables iniciales
+angulo_actual = float(input("Ingrese el ángulo inicial del avión (en grados): "))
+angulo_limite = 15
+tiempo = 0
+
+print("\n--- Simulación de turbulencia ---")
+
+# Simulación
+while angulo_actual < angulo_limite:
+    tiempo += 1
+
+    # Turbulencia aleatoria entre -3 y 3 grados
+    turbulencia = random.randint(-3, 3)
+
+    # Usuario compensa el ángulo
+    try:
+        compensacion = int(input("Ingrese compensación (-2, -1, 0, 1, 2): "))
+    except ValueError:
+        compensacion = 0   # si el usuario escribe algo inválido, se toma como 0
+
+    # Ecuación del ángulo
+    angulo_actual = angulo_actual + turbulencia + compensacion
+
+    # Mostrar estado
+    print(f"\nTiempo: {tiempo} s")
+    print(f"Turbulencia: {turbulencia}")
+    print(f"Compensación: {compensacion}")
+    print(f"Ángulo actual: {angulo_actual:.2f}°")
+
+# Fin de simulación
+print(" El avión entró en pérdida (ángulo límite superado).")
+
+```  
 seccion 1.3
 # Autonomía con consumo de combustible
 
@@ -83,3 +119,48 @@ la constante de ecuacion va a aplicar para un A380, seria constante, Consumo A38
 | velocidad | combustible restante | decision de usuario(aumentar, mantener o reducir la velocidad)   , aterrizar o seguir en vuelo | consumo A380 |
 
 ## Pseudocodigo:
+
+```
+# Simulación de autonomía con consumo de combustible - Airbus A380
+
+# Constante de consumo (litros por hora)
+CONSUMO_A380 = 11400  
+
+# Entradas iniciales
+combustible = float(input("Ingrese la cantidad inicial de combustible (en litros): "))
+velocidad = float(input("Ingrese la velocidad inicial (en km/h): "))
+
+tiempo = 0  # en minutos
+
+print("\n--- Simulación de vuelo ---")
+
+# Simulación
+while combustible > 0:
+    tiempo += 1  # pasa un minuto de vuelo
+
+    print(f"\nMinuto: {tiempo}")
+    print(f"Velocidad actual: {velocidad} km/h")
+    print(f"Combustible restante: {combustible:.2f} L")
+
+    # Opciones del usuario
+    print("Opciones: 1 = Aumentar velocidad | 2 = Mantener | 3 = Reducir velocidad | 4 = Aterrizar")
+    opcion = input("Seleccione una opción: ")
+
+    if opcion == "1":
+        velocidad += 50
+    elif opcion == "3":
+        velocidad -= 50
+        if velocidad < 100:   # límite mínimo de velocidad
+            velocidad = 100
+    elif opcion == "4":
+        print("\n✈ El avión aterrizó exitosamente.")
+        break
+
+    # Cálculo del consumo (convertimos horas a minutos dividiendo entre 60)
+    consumo_por_minuto = (velocidad * CONSUMO_A380) / 60
+    combustible -= consumo_por_minuto
+
+# Fin de simulación
+if combustible <= 0:
+    print("\n⚠ El combustible se agotó. Vuelo terminado.")
+```
