@@ -14,20 +14,20 @@ simula como un avion asciende hacia una altitud establecida
 ## Pseudocodigo:
 
 ``` 
-math import
-
+import math 
 velocidad_ascenso = float(input("Ingrese la velocidad de ascenso de la aeronave: "))
 altitud_objetivo = float(input("Ingrese la altitud objetivo: "))
+angulo_ataque = float(input("Ingrese el ángulo inicial de ascenso (en grados): "))
 
 altitud_actual = 0
 tiempo_transcurrido = 0
-angulo_ataque = float(input("Ingrese el ángulo inicial de ascenso (en grados): "))
+
 
 while altitud_actual < altitud_objetivo:
     print(f"\nTiempo: {tiempo_transcurrido} segundos")
     print(f"Altitud actual: {altitud_actual:.2f}")
 
-     print("Opciones: 1 = Aumentar velocidad | 2 = Mantener | 3 = Disminuir")
+    print("Opciones:\n 1 = Aumentar velocidad \n 2 = Mantener \n 3 = Disminuir")
     opcion = input("Seleccione opción: ")
 
     if opcion == "1":
@@ -37,12 +37,11 @@ while altitud_actual < altitud_objetivo:
         if velocidad_ascenso < 0:  
             velocidad_ascenso = 0
 
- if tiempo_transcurrido % 300 == 0 and tiempo_transcurrido != 0:
-    angulo_ataque = float(input("Ingrese nuevo ángulo de ascenso (en grados): "))
+    if tiempo_transcurrido % 300 == 0 and tiempo_transcurrido != 0:
+     angulo_ataque = float(input("Ingrese nuevo ángulo de ascenso (en grados): "))
 
- altitud_actual = velocidad_ascenso * seno(angulo_ataque) * tiempo_transcurrido
-
-  tiempo_transcurrido += 1
+    altitud_actual = velocidad_ascenso * math.sin(angulo_ataque) * tiempo_transcurrido
+    tiempo_transcurrido += 1
 
 print("\n¡El avión alcanzó la altitud objetivo!")
 print(f"Altitud final: {altitud_actual:.2f}")
@@ -71,7 +70,7 @@ si el angulo actual supera el angulo limte, la aeronave entra en perdida.
 import random
 
 # Variables iniciales
-angulo_actual = float(input("Ingrese el ángulo inicial del avión (en grados): "))
+angulo_actual = float(input("Ingrese el ángulo inicial del avión en grados: "))
 angulo_limite = 15
 tiempo = 0
 
@@ -84,11 +83,12 @@ while angulo_actual < angulo_limite:
     # Turbulencia aleatoria entre -3 y 3 grados
     turbulencia = random.randint(-3, 3)
 
-    # Usuario compensa el ángulo
-    try:
-        compensacion = int(input("Ingrese compensación (-2, -1, 0, 1, 2): "))
-    except ValueError:
-        compensacion = 0   # si el usuario escribe algo inválido, se toma como 0
+      # Usuario compensa el ángulo 
+    compensacion = input("Ingrese compensación (-2, -1, 0, 1, 2): ")
+    if compensacion in ["-2", "-1", "0", "1", "2"]:
+        compensacion = int(compensacion)
+    else:
+        compensacion = 0   # si escribe otra cosa, tomamos 0
 
     # Ecuación del ángulo
     angulo_actual = angulo_actual + turbulencia + compensacion
@@ -127,8 +127,8 @@ la constante de ecuacion va a aplicar para un A380, seria constante, Consumo A38
 CONSUMO_A380 = 11400  
 
 # Entradas iniciales
-combustible = float(input("Ingrese la cantidad inicial de combustible (en litros): "))
-velocidad = float(input("Ingrese la velocidad inicial (en km/h): "))
+combustible = float(input("Ingrese la cantidad inicial de combustible en litros: "))
+velocidad = float(input("Ingrese la velocidad inicial en km/h: "))
 
 tiempo = 0  # en minutos
 
@@ -153,7 +153,7 @@ while combustible > 0:
         if velocidad < 100:   # límite mínimo de velocidad
             velocidad = 100
     elif opcion == "4":
-        print("\n✈ El avión aterrizó exitosamente.")
+        print("\n El avión aterrizó exitosamente.")
         break
 
     # Cálculo del consumo (convertimos horas a minutos dividiendo entre 60)
@@ -162,5 +162,5 @@ while combustible > 0:
 
 # Fin de simulación
 if combustible <= 0:
-    print("\n⚠ El combustible se agotó. Vuelo terminado.")
+    print("\n El combustible se agotó. Vuelo terminado.")
 ```
