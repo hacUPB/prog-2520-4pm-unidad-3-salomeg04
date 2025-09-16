@@ -40,7 +40,7 @@ while altitud_actual < altitud_objetivo:
     if tiempo_transcurrido % 300 == 0 and tiempo_transcurrido != 0:
      angulo_ataque = float(input("Ingrese nuevo ángulo de ascenso (en grados): "))
 
-    altitud_actual = velocidad_ascenso * math.sin(angulo_ataque) * tiempo_transcurrido
+    altitud_actual = velocidad_ascenso * math.sin(math.radians(angulo_ataque)) * tiempo_transcurrido
     tiempo_transcurrido += 1
 
 print("\n¡El avión alcanzó la altitud objetivo!")
@@ -127,7 +127,7 @@ la constante de ecuacion va a aplicar para un A380, seria constante, Consumo A38
 CONSUMO_A380 = 11400  
 
 # Entradas iniciales
-combustible = float(input("Ingrese la cantidad inicial de combustible en litros: "))
+combustible = 11400
 velocidad = float(input("Ingrese la velocidad inicial en km/h: "))
 
 tiempo = 0  # en minutos
@@ -143,7 +143,7 @@ while combustible > 0:
     print(f"Combustible restante: {combustible:.2f} L")
 
     # Opciones del usuario
-    print("Opciones: 1 = Aumentar velocidad | 2 = Mantener | 3 = Reducir velocidad | 4 = Aterrizar")
+    print("Opciones:\n. 1 = Aumentar velocidad\n.  2 = Mantener\n. 3 = Reducir velocidad\n. 4 = Aterrizar")
     opcion = input("Seleccione una opción: ")
 
     if opcion == "1":
@@ -157,7 +157,7 @@ while combustible > 0:
         break
 
     # Cálculo del consumo (convertimos horas a minutos dividiendo entre 60)
-    consumo_por_minuto = (velocidad * CONSUMO_A380) / 60
+    consumo_por_minuto = (CONSUMO_A380) / 60
     combustible -= consumo_por_minuto
 
 # Fin de simulación
