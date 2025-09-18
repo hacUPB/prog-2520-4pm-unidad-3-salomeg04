@@ -14,37 +14,47 @@ simula como un avion asciende hacia una altitud establecida
 ## Pseudocodigo:
 
 ``` 
-import math 
-velocidad_ascenso = float(input("Ingrese la velocidad de ascenso de la aeronave: "))
-altitud_objetivo = float(input("Ingrese la altitud objetivo: "))
-angulo_ataque = float(input("Ingrese el ángulo inicial de ascenso (en grados): "))
+inicio
+    leer velocidad_ascenso
+    leer altitud_objetivo
+    leer angulo_ataque
 
-altitud_actual = 0
-tiempo_transcurrido = 0
+    altitud_actual = 0
+    tiempo_transcurrido = 0
 
+    mientras altitud_actual < altitud_objetivo hacer
+        mostrar "tiempo:", tiempo_transcurrido, "segundos"
+        mostrar "altitud actual:", altitud_actual
 
-while altitud_actual < altitud_objetivo:
-    print(f"\nTiempo: {tiempo_transcurrido} segundos")
-    print(f"Altitud actual: {altitud_actual:.2f}")
+        mostrar "opciones:"
+        mostrar "1 = aumentar velocidad"
+        mostrar "2 = mantener"
+        mostrar "3 = disminuir"
 
-    print("Opciones:\n 1 = Aumentar velocidad \n 2 = Mantener \n 3 = Disminuir")
-    opcion = input("Seleccione opción: ")
+        leer opcion
 
-    if opcion == "1":
-        velocidad_ascenso += 10
-    elif opcion == "3":
-        velocidad_ascenso -= 10
-        if velocidad_ascenso < 0:  
-            velocidad_ascenso = 0
+        si opcion = 1 entonces
+            velocidad_ascenso = velocidad_ascenso + 10
+        sino si opcion = 3 entonces
+            velocidad_ascenso = velocidad_ascenso - 10
+            si velocidad_ascenso < 0 entonces
+                velocidad_ascenso = 0
+            fin si
+        fin si
 
-    if tiempo_transcurrido % 300 == 0 and tiempo_transcurrido != 0:
-     angulo_ataque = float(input("Ingrese nuevo ángulo de ascenso (en grados): "))
+        si tiempo_transcurrido % 300 = 0 y tiempo_transcurrido ≠ 0 entonces
+            leer angulo_ataque
+        fin si
 
-    altitud_actual = velocidad_ascenso * math.sin(math.radians(angulo_ataque)) * tiempo_transcurrido
-    tiempo_transcurrido += 1
+        altitud_actual = velocidad_ascenso * sen(angulo_ataque en radianes) * tiempo_transcurrido
 
-print("\n¡El avión alcanzó la altitud objetivo!")
-print(f"Altitud final: {altitud_actual:.2f}")
+        tiempo_transcurrido = tiempo_transcurrido + 1
+    fin mientras
+
+    mostrar "¡el avión alcanzó la altitud objetivo!"
+    mostrar "altitud final:", altitud_actual
+fin
+
 
 ```   
 
@@ -67,40 +77,37 @@ si el angulo actual supera el angulo limte, la aeronave entra en perdida.
 ## Pseudocodigo:
 
 ```  
-import random
+inicio
+    leer angulo_actual
+    angulo_limite = 15
+    tiempo = 0
 
-# Variables iniciales
-angulo_actual = float(input("Ingrese el ángulo inicial del avión en grados: "))
-angulo_limite = 15
-tiempo = 0
+    mostrar "--- simulación de turbulencia ---"
 
-print("\n--- Simulación de turbulencia ---")
+    mientras angulo_actual < angulo_limite hacer
+        tiempo = tiempo + 1
 
-# Simulación
-while angulo_actual < angulo_limite:
-    tiempo += 1
+        turbulencia = valor_aleatorio_entre(-3, 3)
 
-    # Turbulencia aleatoria entre -3 y 3 grados
-    turbulencia = random.randint(-3, 3)
+        mostrar "ingrese compensación (-2, -1, 0, 1, 2): "
+        leer compensacion
 
-      # Usuario compensa el ángulo 
-    compensacion = input("Ingrese compensación (-2, -1, 0, 1, 2): ")
-    if compensacion in ["-2", "-1", "0", "1", "2"]:
-        compensacion = int(compensacion)
-    else:
-        compensacion = 0   # si escribe otra cosa, tomamos 0
+        si compensacion está en [-2, -1, 0, 1, 2] entonces
+            compensacion = entero(compensacion)
+        sino
+            compensacion = 0
+        fin si
 
-    # Ecuación del ángulo
-    angulo_actual = angulo_actual + turbulencia + compensacion
+        angulo_actual = angulo_actual + turbulencia + compensacion
 
-    # Mostrar estado
-    print(f"\nTiempo: {tiempo} s")
-    print(f"Turbulencia: {turbulencia}")
-    print(f"Compensación: {compensacion}")
-    print(f"Ángulo actual: {angulo_actual:.2f}°")
+        mostrar "tiempo:", tiempo, "s"
+        mostrar "turbulencia:", turbulencia
+        mostrar "compensación:", compensacion
+        mostrar "ángulo actual:", angulo_actual
+    fin mientras
 
-# Fin de simulación
-print(" El avión entró en pérdida (ángulo límite superado).")
+    mostrar "el avión entró en pérdida (ángulo límite superado)."
+fin
 
 ```  
 seccion 1.3
@@ -121,46 +128,50 @@ la constante de ecuacion va a aplicar para un A380, seria constante, Consumo A38
 ## Pseudocodigo:
 
 ```
-# Simulación de autonomía con consumo de combustible - Airbus A380
+inicio
+    consumo_a380 = 11400
 
-# Constante de consumo (litros por hora)
-CONSUMO_A380 = 11400  
+    combustible = 11400
+    leer velocidad
 
-# Entradas iniciales
-combustible = 11400
-velocidad = float(input("Ingrese la velocidad inicial en km/h: "))
+    tiempo = 0
 
-tiempo = 0  # en minutos
+    mostrar "--- simulación de vuelo ---"
 
-print("\n--- Simulación de vuelo ---")
+    mientras combustible > 0 hacer
+        tiempo = tiempo + 1
 
-# Simulación
-while combustible > 0:
-    tiempo += 1  # pasa un minuto de vuelo
+        mostrar "minuto:", tiempo
+        mostrar "velocidad actual:", velocidad, "km/h"
+        mostrar "combustible restante:", combustible, "l"
 
-    print(f"\nMinuto: {tiempo}")
-    print(f"Velocidad actual: {velocidad} km/h")
-    print(f"Combustible restante: {combustible:.2f} L")
+        mostrar "opciones:"
+        mostrar "1 = aumentar velocidad"
+        mostrar "2 = mantener"
+        mostrar "3 = reducir velocidad"
+        mostrar "4 = aterrizar"
 
-    # Opciones del usuario
-    print("Opciones:\n. 1 = Aumentar velocidad\n.  2 = Mantener\n. 3 = Reducir velocidad\n. 4 = Aterrizar")
-    opcion = input("Seleccione una opción: ")
+        leer opcion
 
-    if opcion == "1":
-        velocidad += 50
-    elif opcion == "3":
-        velocidad -= 50
-        if velocidad < 100:   # límite mínimo de velocidad
-            velocidad = 100
-    elif opcion == "4":
-        print("\n El avión aterrizó exitosamente.")
-        break
+        si opcion = 1 entonces
+            velocidad = velocidad + 50
+        sino si opcion = 3 entonces
+            velocidad = velocidad - 50
+            si velocidad < 100 entonces
+                velocidad = 100
+            fin si
+        sino si opcion = 4 entonces
+            mostrar "el avión aterrizó exitosamente."
+            break
+        fin si
 
-    # Cálculo del consumo (convertimos horas a minutos dividiendo entre 60)
-    consumo_por_minuto = (CONSUMO_A380) / 60
-    combustible -= consumo_por_minuto
+        consumo_por_minuto = consumo_a380 / 60
+        combustible = combustible - consumo_por_minuto
+    fin mientras
 
-# Fin de simulación
-if combustible <= 0:
-    print("\n El combustible se agotó. Vuelo terminado.")
+    si combustible <= 0 entonces
+        mostrar "el combustible se agotó. vuelo terminado."
+    fin si
+fin
+
 ```
