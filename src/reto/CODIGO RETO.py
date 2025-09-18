@@ -74,7 +74,7 @@ def simulacion3():
     velocidad = float(input("Ingrese la velocidad inicial en km/h: "))
     tiempo = 0  
 
-    print("\n--- Simulación de vuelo ---")
+    print("\nSimulación de vuelo")
 
     while combustible > 0:
         tiempo += 1  
