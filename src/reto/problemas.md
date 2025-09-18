@@ -82,7 +82,7 @@ inicio
     angulo_limite = 15
     tiempo = 0
 
-    mostrar "--- simulación de turbulencia ---"
+    mostrar "simulación de turbulencia"
 
     mientras angulo_actual < angulo_limite hacer
         tiempo = tiempo + 1
@@ -136,7 +136,7 @@ inicio
 
     tiempo = 0
 
-    mostrar "--- simulación de vuelo ---"
+    mostrar "simulación de vuelo"
 
     mientras combustible > 0 hacer
         tiempo = tiempo + 1
